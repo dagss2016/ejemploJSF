@@ -14,10 +14,10 @@ mysql> grant all privileges on pruebas_dagss.* to dagss@localhost identified by 
 ```
 * Copiar driver JDBC de MySQL en el directorio de librerias de GlassFish
 ```
-$ cp $HOME/cp $HOME/netbeans-8.1/ide/modules/ext/mysql-connector-java-5.1.23-bin.jar \       
+$ cp $HOME/cp $HOME/netbeans-8.2/ide/modules/ext/mysql-connector-java-5.1.23-bin.jar \       
               $HOME/glassfish-4.1.1/glassfish/domains/domain1/lib/
 ```
 * Descargar copia del proyecto desde GitHub
 ```
-git clone https://github.com/dagss2015/ejemploJSF.git
+git clone https://github.com/dagss2016/ejemploJSF.git
 ```
