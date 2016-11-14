@@ -30,10 +30,43 @@
             <h:commandButton value="Crear nuevo Nick" action="#{nickControlador.doCrearNuevoNick()}" />
 
             <h4> BUSCAR NICKS </h4>
-            <p> completar aqui </p>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Buscar nick"/>
+                <h:inputText value="#{nickControlador.nombreNickBuscar}"/>
+                <h:commandButton value="Buscar" action="#{nickControlador.doBuscarNombreNick()}"/>
+            </h:panelGrid>
 
             <h4> LISTADO de NICKS </h4>
-            <p> completar aqui </p>
+            <h:dataTable value="#{nickControlador.nicks}"
+                         var="nick">
+                <h:column>
+                    <f:facet name="header"> Id. </f:facet>
+                    <h:outputLabel value="#{nick.id}"/>                                       
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Nick </f:facet>
+                    <h:commandLink value="#{nick.nick}"
+                                   action="#{nickControlador.doSeleccionarNick(nick)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Nombre </f:facet>
+                    <h:outputLabel value="#{nick.nombre}"/>                                       
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> F. creación </f:facet>
+                    <h:outputLabel value="#{nick.creacion}">
+                        <f:convertDateTime parent="dd/MM/yyyy"/>
+                    </h:outputLabel>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Seleccionar"
+                                     action="#{nickControlador.doSeleccionarNick(nick)}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Ver anuncios"
+                                     action="#{nickControlador.doVerAnuncios(nick)}"/>
+                </h:column>
+            </h:dataTable>
         </h:form>
 
     </h:body>
