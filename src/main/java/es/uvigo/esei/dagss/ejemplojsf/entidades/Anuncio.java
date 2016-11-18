@@ -30,7 +30,7 @@ public class Anuncio implements Serializable {
     @ManyToOne
     private Nick autor;
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "anuncio")
     private List<Comentario> comentarios;
 
     public Anuncio() {
