@@ -1,0 +1,77 @@
+package es.uvigo.esei.dagss.ejemplojsf.controladores;
+
+import es.uvigo.esei.dagss.ejemplojsf.daos.AnuncioDAO;
+import es.uvigo.esei.dagss.ejemplojsf.entidades.Anuncio;
+import es.uvigo.esei.dagss.ejemplojsf.entidades.Nick;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
+@Named(value = "anuncioControlador")
+@SessionScoped
+public class AnuncioControlador implements Serializable {
+    @Inject
+    private AnuncioDAO anuncioDAO;
+    
+    @Inject
+    private NickControlador nickControlador;
+    
+    
+    private String textoBusqueda;
+    private List<Anuncio> anuncios;
+
+    public String getTextoBusqueda() {
+        return textoBusqueda;
+    }
+
+    public void setTextoBusqueda(String textoBusqueda) {
+        this.textoBusqueda = textoBusqueda;
+    }
+
+    public List<Anuncio> getAnuncios() {
+        return anuncios;
+    }
+
+    public void setAnuncios(List<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+    }
+             
+    
+    public AnuncioControlador() {
+    }
+    
+    @PostConstruct
+    public void listaInicial() {
+        Nick nick = nickControlador.getNickActual();
+        anuncios = anuncioDAO.buscarPorAutor(nick);
+    }
+    
+    public String doNuevoAnuncio() {
+        return "nuevo_anuncio";
+    }
+    
+    public String doVerTodos() {
+        anuncios = anuncioDAO.buscarTodos();
+        
+        return "listado_anuncios";
+    }
+    
+    public String doBuscarNick() {
+        //anuncios = anuncioDAO.buscarPorNick(textoBusqueda);
+        return "listado_anuncios";
+    }
+    
+    
+    public String doBuscarTitulo() {
+        anuncios = anuncioDAO.buscarPorTexto(textoBusqueda);
+        return "listado_anuncios";
+    }
+    
+    public String doVerDetalle(Anuncio anuncio) {
+        // FALTAN COSAS
+        return "detalle_anuncio";
+    }
+}
