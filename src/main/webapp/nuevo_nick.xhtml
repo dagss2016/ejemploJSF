@@ -11,13 +11,13 @@
 
         <h:form>
             <h:panelGrid columns="3">
-                <h:outputLabel value="Nick: "/>
+                <h:outputLabel value="Autor:" for="nick"/>
                 <h:inputText id ="nick" value="#{nickControlador.nickActual.nick}" required="true"/>
                 <h:message for="nick"/>
 
-                <h:outputLabel value="Nombre: "/>
+                <h:outputLabel value="Nombre:" for="nombre"/>
                 <h:inputText id="nombre" value="#{nickControlador.nickActual.nombre}" required="true"/>
-                <h:message for="nick"/>
+                <h:message for="nombre"/>
 
             </h:panelGrid>
 

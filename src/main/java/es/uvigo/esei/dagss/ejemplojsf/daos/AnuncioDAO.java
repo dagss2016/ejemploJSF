@@ -26,7 +26,7 @@ public class AnuncioDAO {
 
     public Anuncio anadirComentario(Anuncio anuncio, Comentario comentario) {
         anuncio.anadirComentario(comentario);
-        return em.merge(anuncio);        
+        return em.merge(anuncio);
     }
 
     public void borrar(Anuncio anuncio) {
@@ -55,6 +55,12 @@ public class AnuncioDAO {
 
         q.setParameter("patronTitulo", "%" + patron + "%");
         q.setParameter("patronDetalle", "%" + patron + "%");
+        return q.getResultList();
+    }
+
+    public List<Anuncio> buscarPorNick(String patron) {
+        TypedQuery<Anuncio> q = em.createQuery("SELECT a FROM Anuncio AS a WHERE a.autor.nick LIKE :patron", Anuncio.class);
+        q.setParameter("patron", "%" + patron + "%");
         return q.getResultList();
     }
 
