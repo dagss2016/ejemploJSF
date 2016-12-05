@@ -2,6 +2,7 @@ package es.uvigo.esei.dagss.ejemplojsf.controladores;
 
 import es.uvigo.esei.dagss.ejemplojsf.daos.AnuncioDAO;
 import es.uvigo.esei.dagss.ejemplojsf.entidades.Anuncio;
+import es.uvigo.esei.dagss.ejemplojsf.entidades.Comentario;
 import es.uvigo.esei.dagss.ejemplojsf.entidades.Nick;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -103,5 +104,15 @@ public class AnuncioControlador implements Serializable {
         anuncioDAO.crear(anuncioActual);
         
         return "listado_anuncios";
+    }
+    
+    public void eventoAnadirComentario() {
+        Comentario nuevoComentario = new Comentario(textoComentario, anuncioActual, nickControlador.getNickActual());       
+        anuncioActual = anuncioDAO.anadirComentario(anuncioActual, nuevoComentario);        
+    }
+    
+    public void eventoEliminarComentario(Comentario comentario) {
+        anuncioActual.getComentarios().remove(comentario);
+        anuncioActual = anuncioDAO.actualizar(anuncioActual);
     }
 }

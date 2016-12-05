@@ -54,7 +54,11 @@
                 <p:column>
                     <p:commandButton id="botonEliminar"
                                      value="Eliminar"
-                                     rendered="#{comentario.autor.id == nickControlador.nickActual.id}"/>
+                                     rendered="#{comentario.autor.id == nickControlador.nickActual.id}"
+                                     actionListener="#{anuncioControlador.eventoEliminarComentario(comentario)}"
+                                     process="@this"
+                                     update="tablaComentarios"/>
+                                     
                 </p:column>                
             </p:dataTable>
 
@@ -62,7 +66,11 @@
                 <p:outputLabel value="Nuevo Comentario"/>
                 <p:inputText id="textoComentario" value="#{anuncioControlador.textoComentario}"/>
                 <p:outputLabel  value="(de '#{nickControlador.nickActual.nick}')"/>
-                <p:commandButton id="botonComentario" value="Añadir comentario"/>                             
+                <p:commandButton id="botonComentario" value="Añadir comentario"
+                                 actionListener="#{anuncioControlador.eventoAnadirComentario()}"
+                                 process="@this textoComentario"
+                                 update="tablaComentarios"
+                                 />                             
             </p:panelGrid>
 
             <p:commandButton value="Volver" ajax="false" action="listado_anuncios?facesRedirect=true"/>
