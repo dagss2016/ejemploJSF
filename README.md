@@ -1,5 +1,9 @@
 # ejemploJSF
 Ejemplo inicial JSF (Java Server Faces)
+* Añadido ejemplo REST con JAX-RS
+
+#ESQUEMA
+![Esquema del ejemplo](/doc/esquema.jpg?raw=true "Esquema del proyecto JSF + JAX-RS")
 
 
 #PREVIO
