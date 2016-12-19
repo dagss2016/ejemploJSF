@@ -11,37 +11,42 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD) // Habilita anotaciones JAXB en atributos
 public class Comentario implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String texto;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    
+
     @XmlTransient  // Omite serializar el Anuncio
     @ManyToOne
     private Anuncio anuncio;
-    
+
     @ManyToOne
     private Nick autor;
 
     public Comentario() {
-        this.fecha = Calendar.getInstance().getTime();       
+        this.fecha = Calendar.getInstance().getTime();
     }
-       
+
     public Comentario(String texto, Anuncio anuncio, Nick autor) {
         this.texto = texto;
         this.anuncio = anuncio;
         this.autor = autor;
-        this.fecha = Calendar.getInstance().getTime();       
+        this.fecha = Calendar.getInstance().getTime();
     }
 
     public Long getId() {
@@ -113,6 +118,5 @@ public class Comentario implements Serializable {
         }
         return true;
     }
-    
-    
+
 }

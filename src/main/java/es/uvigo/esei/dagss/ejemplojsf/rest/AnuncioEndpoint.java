@@ -34,11 +34,13 @@ public class AnuncioEndpoint {
     }
 
     @GET
-    @Produces(value = {MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response buscarAnuncios() {
         List<Anuncio> anuncios = anuncioDAO.buscarTodos();
+
         // Necesario para devolver Listas como entidades XML/JSON
         GenericEntity<List<Anuncio>> entidadXML = new GenericEntity<List<Anuncio>>(anuncios) {/*vacio*/};
+
         return Response.ok(entidadXML).build();
     }
 
